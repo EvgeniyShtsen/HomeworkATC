@@ -7,7 +7,7 @@ namespace HomeworkATC
         public int CostOfMonth { get; private set; }
         public int CostOfCallPerMinute { get; private set; }
         public int LimitCallInMonth { get; private set; }
-        public TariffType TariffType { get; private set; }
+        public TariffType TariffType { get; set; }
         public TariffTypes(TariffType type)
         {
             TariffType = type;

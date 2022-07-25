@@ -7,9 +7,9 @@ namespace HomeworkATC
     {
         static Random rnd = new Random();
 
-        public Subscriber Subscriber { get; private set; }
-        public int Number { get; private set; }
-        public TariffTypes Tariff { get; private set; }
+        public Subscriber Subscriber { get; set; }
+        public int Number { get; set; }
+        public TariffTypes Tariff { get; set; }
         public DateTime LastTariffUpdateDate;
 
 

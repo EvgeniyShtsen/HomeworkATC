@@ -40,19 +40,42 @@ namespace HomeworkATC
             Thread.Sleep(3200);
             thirdTerminal.EndCall();
 
-            firstContact.ChangeTariff(Enums.TariffType.Pro);
+            thirdTerminal.Call(secondTerminal.Number);  // third => second (in)
+            Thread.Sleep(1700);
+            thirdTerminal.EndCall();
 
-
-
+            secondTerminal.Call(firstTerminal.Number);  // second => first (in)
+            Thread.Sleep(2500);
+            secondTerminal.EndCall();
 
 
             Console.WriteLine();
-            Console.WriteLine("Sorted records:");
-            foreach (var item in render.SortCalls(bs.GetReport(firstTerminal.Number), Enums.TypeSort.SortByDate))
+            Console.WriteLine($"Sorted records to {firstContact.Subscriber.FirstName}, number - {firstContact.Number}, tariff plan - {firstContact.Tariff.TariffType}:");
+            foreach (var item in render.SortCalls(bs.GetReport(firstTerminal.Number), Enums.TypeSort.SortByNumber))
             {
                 Console.WriteLine("Calls:\n Type {0} |\n Date: {1} |\n Duration: {2} | Cost: {3} | Telephone number: {4}",
                     item.CallType, item.Date, item.Time.ToString("mm:ss"), item.Cost, item.Number);
             }
+            Console.WriteLine($"Actually balance for number {firstContact.Number} - {firstContact.Subscriber.Money}"); // only outgoing calls minus the balance 
+
+
+            Console.WriteLine();
+            Console.WriteLine($"Sorted records to {secondContact.Subscriber.FirstName}, number - {secondContact.Number}, tariff plan - {secondContact.Tariff.TariffType}:");
+            foreach (var item in render.SortCalls(bs.GetReport(secondTerminal.Number), Enums.TypeSort.SortByDate))
+            {
+                Console.WriteLine("Calls:\n Type {0} |\n Date: {1} |\n Duration: {2} | Cost: {3} | Telephone number: {4}",
+                    item.CallType, item.Date, item.Time.ToString("mm:ss"), item.Cost, item.Number);
+            }
+            Console.WriteLine($"Actually balance for number {secondContact.Number} - {secondContact.Subscriber.Money}"); // only outgoing calls minus the balance 
+
+            Console.WriteLine();
+            Console.WriteLine($"Sorted records to {thirdContact.Subscriber.FirstName}, number - {thirdContact.Number}, tariff plan - {thirdContact.Tariff.TariffType}:");
+            foreach (var item in render.SortCalls(bs.GetReport(thirdTerminal.Number), Enums.TypeSort.SortByCost))
+            {
+                Console.WriteLine("Calls:\n Type {0} |\n Date: {1} |\n Duration: {2} | Cost: {3} | Telephone number: {4}",
+                    item.CallType, item.Date, item.Time.ToString("mm:ss"), item.Cost, item.Number);
+            }
+            Console.WriteLine($"Actually balance for number {thirdContact.Number} - {thirdContact.Subscriber.Money}"); // only outgoing calls minus the balance 
 
             Console.ReadKey();
 
