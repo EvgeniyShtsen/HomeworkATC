@@ -16,11 +16,15 @@ namespace HomeworkATC
             IUserContract secondContact = ate.RegisterContract(new Subscriber("Vladimir", "Puding"), Enums.TariffType.Pro);
             IUserContract thirdContact = ate.RegisterContract(new Subscriber("Francisco", "Michlen"), Enums.TariffType.Standart);
 
-            firstContact.Subscriber.AddMoney(10);
+            firstContact.Subscriber.AddMoney(5500);
             var firstTerminal = ate.GetNewTerminal(firstContact);
             firstTerminal.ConnectToPort();
+
+            secondContact.Subscriber.AddMoney(15000);
             var secondTerminal = ate.GetNewTerminal(secondContact);
             secondTerminal.ConnectToPort();
+
+            thirdContact.Subscriber.AddMoney(9800);
             var thirdTerminal = ate.GetNewTerminal(thirdContact);
             thirdTerminal.ConnectToPort();
 
