@@ -29,16 +29,22 @@ namespace HomeworkATC
             thirdTerminal.ConnectToPort();
 
             firstTerminal.Call(secondTerminal.Number); // first => second (out)
-            Thread.Sleep(3000);
+            Thread.Sleep(1500);
             firstTerminal.EndCall();
 
             firstTerminal.Call(thirdTerminal.Number);  // first => third (out)
-            Thread.Sleep(2500);
+            Thread.Sleep(2400);
             firstTerminal.EndCall();
 
             thirdTerminal.Call(firstTerminal.Number);  // third => first (in)
-            Thread.Sleep(2500);
-            firstTerminal.EndCall();
+            Thread.Sleep(3200);
+            thirdTerminal.EndCall();
+
+            firstContact.ChangeTariff(Enums.TariffType.Pro);
+
+
+
+
 
             Console.WriteLine();
             Console.WriteLine("Sorted records:");

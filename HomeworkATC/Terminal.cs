@@ -50,31 +50,10 @@ namespace HomeworkATC.AutomaticTelephoneExchange
 
         public void TakeIncomingCall(object sender, Calling e)
         {
-            bool flag = true;
             _id = e.Id;
             Console.WriteLine("Have incoming Call at number: {0} to terminal {1}", e.TelephoneNumber, e.TargetTelephoneNumber);
-            while (flag == true)
-            {
-                Console.WriteLine("Answer? Y/N");
-                char ultima = Console.ReadKey().KeyChar;
-                if (ultima == 'Y' || ultima == 'y')
-                {
-                    flag = false;
-                    Console.WriteLine();
-                    AnswerToCall(e.TelephoneNumber, CallState.Answered, e.Id);
-                }
-                else if (ultima == 'N' || ultima == 'n')
-                {
-                    flag = false;
-                    Console.WriteLine();
-                    EndCall();
-                }
-                else
-                {
-                    flag = true;
-                    Console.WriteLine();
-                }
-            }
+            Console.WriteLine();
+            AnswerToCall(e.TelephoneNumber, CallState.Answered, e.Id);   
         }
 
         public void ConnectToPort()
